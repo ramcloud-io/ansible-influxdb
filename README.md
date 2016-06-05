@@ -1,11 +1,11 @@
 # InfluxDB
-[![Latest Version](http://img.shields.io/github/release/mtchavez/ansible-influxdb.svg?style=flat-square)](https://github.com/mtchavez/ansible-influxdb/releases)
-[![Build Status](https://travis-ci.org/mtchavez/ansible-influxdb.svg?branch=master)](https://travis-ci.org/mtchavez/ansible-influxdb)
+[![Latest Version](http://img.shields.io/github/release/ramcloud-io/ansible-influxdb.svg?style=flat-square)](https://github.com/ramcloud-io/ansible-influxdb/releases)
+[![Build Status](https://travis-ci.org/ramcloud-io/ansible-influxdb.svg?branch=master)](https://travis-ci.org/ramcloud-io/ansible-influxdb)
 
 InfluxDB Ansible Galaxy role. Sets up a working InfluxDB server.
-This role is for versions of InfluxDB >= `0.11.1` and is currently defaulted to `0.11.1.1`.
+This role is for versions of InfluxDB >= `0.11.1` and is currently defaulted to `0.13.0`.
 
-**Currenlty clustering is not taken into account for.**
+**Currently clustering is not taken into account for.**
 
 ## Requirements
 
@@ -29,6 +29,8 @@ influxdb_reporting_disabled: "false"
 influxdb_base_data_dir: "/var/lib/influxdb"
 influxdb_influxd_bin: "/usr/bin/influxd"
 influxdb_scripts_dir: "/usr/lib/influxdb/scripts"
+influxdb_install_method: "download"
+influxdb_repository_channel: "stable"
 
 # [meta]
 influxdb_meta_enabled: "true"
@@ -172,6 +174,7 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: servers
       roles:
          - influxdb
+
 ## License
 
 BSD
