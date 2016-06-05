@@ -9,7 +9,7 @@ This role is for versions of InfluxDB >= `0.11.1` and is currently defaulted to 
 
 ## Requirements
 
-Ansible version 1.6 and greater
+Ansible version 1.9 and greater
 
 ## Role Variables
 
@@ -172,6 +172,7 @@ No current dependencies on other Galaxy roles.
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
+      become: True
       roles:
          - influxdb
 

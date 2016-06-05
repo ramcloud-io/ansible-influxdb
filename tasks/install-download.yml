@@ -1,15 +1,34 @@
 # TODO: Use md5sum to check download
-- name: Download version
+- name: download influxdb {{ influxdb_ver }} deb
   get_url:
-    url: "{{ influxdb_dl_url }}"
-    dest: "{{ influxdb_pkg }}"
+    url: "{{ influxdb_deb_dl_url }}"
+    dest: "{{ influxdb_deb_pkg }}"
+  register: pkg_dl
+  tags:
+    - influxdb
+  when: ansible_os_family == 'Debian'
+
+- name: download influxdb {{ influxdb_ver }} rpm
+  get_url:
+    url: "{{ influxdb_rpm_dl_url }}"
+    dest: "{{ influxdb_rpm_pkg }}"
+  register: pkg_dl
+  tags:
+    - influxdb
+  when: ansible_os_family == 'RedHat'
+
+- name: dpkg install influxdb {{ influxdb_ver }}
+  command: "dpkg --force-confdef --force-confold --skip-same-version -i {{ pkg_dl.dest }}"
+  register: dpkg_result
+  changed_when: "dpkg_result.stdout.startswith('Selecting')"
+  when: ansible_os_family == 'Debian'
   tags:
     - influxdb
 
-- name: Install package
-  command: "dpkg --force-confdef --force-confold --skip-same-version -i {{ influxdb_pkg }}"
-  register: dpkg_result
-  changed_when: "dpkg_result.stdout.startswith('Selecting')"
-  when: ansible_distribution in ['Ubuntu', 'Debian']
+# TODO: Need a changed_when for RPM installs.
+- name: rpm install influxdb {{ influxdb_ver }}
+  command: "rpm --install --force {{ pkg_dl.dest }}"
+  register: rpm_result
+  when: ansible_os_family == 'RedHat'
   tags:
     - influxdb

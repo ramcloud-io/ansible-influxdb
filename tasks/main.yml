@@ -25,7 +25,7 @@
     - influxdb
 
 - include: install-debian.yml
-  when: influxdb_install_method == "repository" and ansible_distribution in ["Debian", "Ubuntu"]
+  when: influxdb_install_method == "repository" and ansible_os_family == "Debian"
   tags:
     - influxdb
 
@@ -89,7 +89,7 @@
 # TODO: Find out why this doesn't work
 # TODO: Update to use Ansible 2.0 run as instead of sudo
 - name: Run config update
-  command: "sudo {{ influxdb_influxd_bin }} config -config {{ influxdb_generated_config }}"
+  command: "{{ influxdb_influxd_bin }} config -config {{ influxdb_generated_config }}"
   register: influxdb_merged_config
   when: write_config | changed
   tags:

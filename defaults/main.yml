@@ -1,18 +1,5 @@
 ---
 # defaults file for influxdb
-influxdb_ver: "0.13.0"
-influxdb_checksums_deb:
-  0_13_0: "4f0aa76fee22cf4c18e2a0779ba4f462"
-influxdb_checksums_rpm:
-  0_13_0: "b64ada82b6abf5d6382ed08dde1e8579"
-
-influxdb_deb_arch: "amd64"
-influxdb_deb_dl_url: "https://dl.influxdata.com/influxdb/releases/influxdb_{{ influxdb_ver }}_{{ influxdb_deb_arch }}.deb"
-influxdb_deb_pkg: "/usr/local/src/influxdb_{{ influxdb_ver }}_{{ influxdb_deb_arch }}.deb"
-
-influxdb_rpm_arch: "x86_64"
-influxdb_rpm_dl_url: "https://dl.influxdata.com/influxdb/releases/influxdb-{{ influxdb_ver }}.{{ influxdb_rpm_arch }}.rpm"
-influxdb_rpm_pkg: "/usr/local/src/influxdb-{{ influxdb_ver }}.{{ influxdb_rpm_arch }}.rpm"
 
 # Set influxdb_install_method to "repository" to install influxdb from influxdata's repository
 influxdb_install_method: "download"
