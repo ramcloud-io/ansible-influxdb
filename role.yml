@@ -8,6 +8,7 @@
   vars_files:
     - "defaults/main.yml"
     - "vars/main.yml"
+    - "vars/test.yml"
   tasks:
     - include: "tasks/main.yml"
   handlers:
